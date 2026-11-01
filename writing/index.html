@@ -1,0 +1,20 @@
+---
+title: Writing
+description: Notes from Nikhil Narula on building LLM systems, and on the graph theory behind them.
+---
+<section class="wrap page-head">
+  <h1 class="label">Writing</h1>
+  <p class="page-head__lede">Notes on building LLM systems, and on the graph theory I worked on before them.</p>
+</section>
+<section class="wrap writing">
+  {%- for post in site.posts %}
+  <a class="entry{% if forloop.first %} entry--lead{% endif %}" href="{{ post.url }}">
+    <span class="entry__meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time> &middot; {% include read-time.html content=post.content %}</span>
+    <span class="entry__kicker">{{ post.kicker }}</span>
+    <h2 class="entry__title">{{ post.title }}</h2>
+    <p class="entry__desc">{{ post.description }}</p>
+    <span class="entry__read">Read &rarr;</span>
+  </a>
+  {%- endfor %}
+  <p class="writing__feed">New posts by <a href="/feed.xml">RSS</a>.</p>
+</section>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ site.lang }}" id="top">
+<head>
+{% include head.html %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+{% include header.html %}
+<main id="main">
+{{ content }}
+</main>
+{% include footer.html %}
+<script src="/assets/js/site.js?v={{ site.time | date: '%s' }}" defer></script>
+</body>
+</html>
