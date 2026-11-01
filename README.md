@@ -1,1 +1,1 @@
-Mail me interesting opportunities at nihilxnarula@gmail.com
+Mail me interesting opportunities at nikhilxnarula@gmail.com
