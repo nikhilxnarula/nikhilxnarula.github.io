@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<div class="progress" aria-hidden="true"></div>
+<article class="post">
+  <header class="post__head wrap wrap--narrow">
+    <p class="label"><a href="/writing/">Writing</a> &middot; {{ page.kicker }}</p>
+    <h1 class="post__title">{{ page.title }}</h1>
+    <p class="post__meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time> &middot; {% include read-time.html content=content %}</p>
+  </header>
+  <div class="prose wrap wrap--narrow">
+{{ content }}
+  </div>
+  <footer class="post__foot wrap wrap--narrow">
+    <p class="bio"><strong>{{ site.title }}</strong> builds production generative AI at Wells Fargo in Bengaluru, and did graph theory research at IIT Madras. <a href="/contact/">Say hello</a>.</p>
+    {%- if page.previous or page.next %}
+    <nav class="pager" aria-label="More writing">
+      {%- if page.next %}
+      <a href="{{ page.next.url }}"><span class="label">Newer</span>{{ page.next.title }}</a>
+      {%- endif %}
+      {%- if page.previous %}
+      <a href="{{ page.previous.url }}"><span class="label">Older</span>{{ page.previous.title }}</a>
+      {%- endif %}
+    </nav>
+    {%- endif %}
+  </footer>
+</article>

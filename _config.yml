@@ -1,0 +1,58 @@
+# Contact details live here and nowhere else.
+email: nikhilxnarula@gmail.com
+github_url: https://github.com/nikhilxnarula
+linkedin_url: https://www.linkedin.com/in/nikhilxnarula/
+
+title: Nikhil Narula
+tagline: AI Engineer in Bengaluru
+description: >-
+  AI engineer in Bengaluru building production generative AI at Wells Fargo:
+  agentic systems, MCP, RAG and LLM evaluation. IIT Madras CSE.
+url: https://nikhilxnarula.github.io
+baseurl: ""
+lang: en
+locale: en_IN
+timezone: Asia/Kolkata
+
+author:
+  name: Nikhil Narula
+  url: https://nikhilxnarula.github.io
+
+social:
+  name: Nikhil Narula
+  links:
+    - https://github.com/nikhilxnarula
+    - https://www.linkedin.com/in/nikhilxnarula/
+
+# GitHub Pages would otherwise add its default theme's CSS to the build.
+theme: null
+
+permalink: /writing/:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      image: /assets/img/og.png
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

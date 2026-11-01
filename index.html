@@ -1,0 +1,172 @@
+---
+---
+{%- assign latest = site.posts | first -%}
+<section class="hero">
+  <div class="wrap">
+    <div class="hero__top">
+      <h1 class="label"><span class="hero__name">Nikhil Narula <span aria-hidden="true">&middot;</span> </span>AI Engineer <span aria-hidden="true">&middot;</span> Bengaluru</h1>
+      <button class="hero__pause" type="button" data-pause hidden>Pause</button>
+    </div>
+    <p class="hero__title">
+      <span class="hero__static">I build LLM systems that</span>
+      <span class="hero__rotate" data-rotate aria-hidden="true">
+        <span class="hero__phrase is-active">run in production.</span>
+        <span class="hero__phrase">explain their answers.</span>
+        <span class="hero__phrase">check their own work.</span>
+        <span class="hero__phrase">use tools, not guesses.</span>
+        <span class="hero__phrase">learn from feedback.</span>
+        <span class="hero__phrase">hold up on real data.</span>
+      </span>
+      <span class="sr-only">run in production, explain their answers, check their own work, use tools instead of guesses, learn from feedback and hold up on real data.</span>
+    </p>
+    <p class="hero__sub">I'm a software engineer at Wells Fargo, taking a generative AI product from an early prototype to enterprise-wide production. I like problems where LLMs meet large-scale data, especially agentic workflows and evaluation. I studied computer science at IIT Madras, where I also did research in graph theory. <a href="/contact/">Get in touch</a>.</p>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>Software Engineer, Wells Fargo</dd></div>
+      <div><dt>Focus</dt><dd>Agentic AI, RAG, LLM evaluation</dd></div>
+      <div><dt>Studied</dt><dd>Computer Science, IIT Madras</dd></div>
+      <div><dt>Base</dt><dd>Bengaluru, India</dd></div>
+    </dl>
+  </div>
+</section>
+
+{%- if latest %}
+<section class="latest" aria-label="Latest writing">
+  <div class="wrap">
+    <a class="latest__link" href="{{ latest.url }}">
+      <span class="label">Latest writing</span>
+      <span class="latest__text"><strong>{{ latest.title }}</strong> <span class="latest__desc">{{ latest.description }}</span></span>
+    </a>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section" id="work">
+  <div class="wrap">
+    <h2 class="label">What I work on</h2>
+    <p class="section__lead">At Wells Fargo, my work sits where agentic AI meets data engineering.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="card__num" aria-hidden="true">01</div>
+        <h3>Agents that can explain</h3>
+        <p>An Explainability Agent on a custom MCP server. It uses RAG over vector databases and lineage-aware reasoning to answer questions about the data.</p>
+        <p class="tags">MCP &middot; RAG &middot; LangGraph</p>
+      </article>
+      <article class="card">
+        <div class="card__num" aria-hidden="true">02</div>
+        <h3>LLM evaluation</h3>
+        <p>A Critic Agent: an LLM-as-judge framework that scores outputs and uses the results to improve the rules, so quality is measured and not assumed.</p>
+        <p class="tags">LLM-as-judge &middot; Human in the loop</p>
+      </article>
+      <article class="card">
+        <div class="card__num" aria-hidden="true">03</div>
+        <h3>Context engineering</h3>
+        <p>Pipelines that pass data profiles, knowledge graphs and human feedback to the model, so it starts from what is true about the data.</p>
+        <p class="tags">Prompts &middot; Context &middot; Knowledge graphs</p>
+      </article>
+      <article class="card">
+        <div class="card__num" aria-hidden="true">04</div>
+        <h3>LLMs on large-scale data</h3>
+        <p>A system that generates data-quality rules and runs them on real-time feeds. It began as an early prototype and now runs in production.</p>
+        <p class="tags">Python &middot; Kafka &middot; Distributed systems</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <h2 class="label">Open source and research</h2>
+
+    <article class="project">
+      <div class="project__copy">
+        <p class="project__kicker">Open source &middot; Python, FastMCP</p>
+        <h3>SageMath MCP server</h3>
+        <p>Ask an agent whether a graph is a brick, and it calls a tool instead of guessing. The server answers structural questions about graphs using SageMath, and it hands back a witness whenever one exists.</p>
+        <dl class="stats">
+          <div><dt>tools</dt><dd>16</dd></div>
+          <div><dt>named graphs</dt><dd>27</dd></div>
+          <div><dt>tests</dt><dd>21</dd></div>
+          <div><dt>warm call, after a 5 s start</dt><dd>~20 ms</dd></div>
+        </dl>
+        <p class="links"><a href="https://github.com/nikhilxnarula/sagemath-mcp">Code on GitHub &#8599;</a><a href="/writing/keeping-sage-warm/">How it works &rarr;</a></p>
+      </div>
+      <div class="term">
+        <div class="term__bar"><span>sagemath-mcp</span><span>real output, trimmed</span></div>
+<pre class="term__body" tabindex="0"><code><span class="c"># Is the Petersen graph a brick?</span>
+<span class="k">is_brick</span>(graph="petersen")
+{"order": 10, "size": 15, "is_brick": true,
+ "is_triconnected": true, "is_bicritical": true}
+
+<span class="c"># Which edges are quasi-b-invariant?</span>
+<span class="k">has_qbinv_edges</span>(graph="petersen")
+{"has_quasi_binvariant_edges": true,
+ "quasi_binvariant_count": 15, ...}
+
+<span class="c"># A typo gets an error an agent can act on.</span>
+<span class="k">is_brick</span>(graph="petrsen")
+'petrsen' is neither a well-formed graph6 string
+nor a known graph name.
+Did you mean: petersen, ...</code></pre>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project__copy">
+        <p class="project__kicker">Research &middot; with Prof. Nishad Kothari, IIT Madras</p>
+        <h3>Perfect matchings in snarks</h3>
+        <p>Snarks are the cubic graphs that resist 3-edge-colouring, and many famous problems reduce to them. Prof. Kothari and Santhosh Raghul announced a conjecture about them at the <em>Snarks and their generalizations</em> workshop at Paderborn University in November 2025. We proved it. The work was presented at the ADMA International Conference on Discrete Mathematics and Applications at IIT Madras in June 2026.</p>
+        <p>The project also proved that a near-bipartite, essentially 4-edge-connected cubic brick has at most two quasi-b-invariant edges.</p>
+        <p class="links"><a href="https://admaicdm.github.io/2026/speakers/Nishad%20Kothari.pdf">Conference abstract &#8599;</a><a href="/writing/the-smallest-snark/">The idea, explained &rarr;</a></p>
+      </div>
+      <div class="theorem">
+        <p class="label">The result</p>
+        <p class="theorem__text">In any snark other than the Petersen graph, the quasi-b-invariant edges form a matching.</p>
+        <p class="theorem__eg"><span>An 18-vertex snark, from the server above:</span> <code>(2,4) (3,8) (10,15) (13,17)</code> <span>No vertex appears twice.</span></p>
+      </div>
+    </article>
+
+    <article class="project project--small">
+      <div class="project__copy">
+        <p class="project__kicker">Small build &middot; Amazon Bedrock, FastAPI</p>
+        <h3>Telegram to Notion expense tracker</h3>
+      </div>
+      <div>
+        <p>Send <code>chai 40</code> to a Telegram bot. Amazon Bedrock parses it with a forced tool call, and a row appears in Notion.</p>
+        <p class="links"><a href="https://github.com/nikhilxnarula/telegram-notion-expense-tracker">Code on GitHub &#8599;</a></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <h2 class="label">About</h2>
+    <div class="about">
+      <p class="statement">Plausible is not the same as <em>correct.</em></p>
+      <div class="about__text">
+        <p>An LLM can write something that looks right on almost any input. Making it reliable on real data, and being able to show that it is reliable, is the part I enjoy. That is why so much of my work is about <strong>agentic workflows and evaluation</strong>.</p>
+        <p>The habit comes from maths. At <strong>IIT Madras</strong> I worked on <strong>perfect matchings in cubic graphs</strong>, where an answer only counts once you can prove it. I was also a teaching assistant for Structural Graph Theory and Problem Solving in C.</p>
+        <p>My main tools are <strong>Python, LangChain and LangGraph, and distributed systems</strong>. I also work with FastAPI, Pydantic, Kafka, Neo4j, MongoDB Atlas Vector Search, Kubernetes, C/C++ and TypeScript.</p>
+      </div>
+    </div>
+    <table class="timeline">
+      <caption class="sr-only">Experience and education</caption>
+      <tbody>
+        <tr><th scope="row">Aug 2025 &ndash; now</th><td><strong>Software Engineer</strong>, Wells Fargo</td><td>Production generative AI</td></tr>
+        <tr><th scope="row">Jul 2024 &ndash; May 2025</th><td><strong>Teaching Assistant</strong>, IIT Madras</td><td>CS6240 Structural Graph Theory, CS1111 Problem Solving in C, 120+ students</td></tr>
+        <tr><th scope="row">May &ndash; Jul 2024</th><td><strong>Software Intern</strong>, Media.net</td><td>Click-revenue prediction for contextual ads</td></tr>
+        <tr><th scope="row">May 2022 &ndash; Jan 2023</th><td><strong>DevOps Coordinator</strong>, Saarang</td><td>IIT Madras's cultural festival</td></tr>
+        <tr><th scope="row">2021 &ndash; 2025</th><td><strong>B.Tech, Computer Science and Engineering</strong>, IIT Madras</td><td>CGPA 8.21/10</td></tr>
+        <tr><th scope="row">2021</th><td><strong>All India Rank 455</strong>, JEE Advanced</td><td>All India Rank 911, KVPY</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 class="statement statement--center">Mail me interesting <em>opportunities.</em></h2>
+    <p class="cta__mail"><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    <p class="cta__small">Resume on request &middot; <a href="{{ site.github_url }}">GitHub</a> &middot; <a href="{{ site.linkedin_url }}">LinkedIn</a></p>
+  </div>
+</section>

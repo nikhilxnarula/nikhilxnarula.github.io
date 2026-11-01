@@ -1,0 +1,11 @@
+{%- comment -%}
+The Petersen graph with its six perfect matchings. site.js does the stepping;
+without JS the figure simply stays on the first matching.
+{%- endcomment -%}
+<figure class="plate" data-petersen>
+<figcaption class="plate__bar"><span>Fig. 1 &middot; Petersen graph</span><span aria-live="polite">Perfect matching <b data-index>1</b> of 6</span></figcaption>
+<div class="plate__art">{% include petersen.svg %}</div>
+<div class="plate__foot">
+<span class="plate__controls" data-controls hidden><button type="button" data-prev>&larr; Previous</button><button type="button" data-next>Next &rarr;</button></span>
+</div>
+</figure>
