@@ -1,0 +1,35 @@
+{%- comment -%}
+Fig. 1 of "Judging the Judge": one eval set, three judges. Each switch button
+carries its judge's four cell counts (caught, missed, false alarms, passed),
+its full name and its note. site.js redraws the dots and metrics from them,
+and shows which cells a metric reads. Without JS the figure stays on the
+baseline prompt.
+{%- endcomment -%}
+<figure class="plate matrix" data-matrix>
+<figcaption class="plate__bar"><span>Fig. 1 &middot; Confusion matrix</span><span aria-live="polite">Judge: <b data-current>Baseline prompt</b></span></figcaption>
+<div class="matrix__body">
+<div class="matrix__top">
+<div class="matrix__switch" role="group" aria-label="Choose a judge" data-switch hidden><button type="button" aria-pressed="true" data-counts="4 19 0 27" data-name="Baseline prompt" data-note="Every flag was right, but 19 of the 23 harmful responses got through.">Baseline</button><button type="button" aria-pressed="false" data-counts="7 15 2 24" data-name="Few-shot prompt" data-note="Two examples in the prompt: 7 caught instead of 4, and the first 2 false alarms. Both examples left the eval set, so n = 48.">Few-shot</button><button type="button" aria-pressed="false" data-counts="0 23 0 27" data-name="Never flags" data-note="Answers &ldquo;not harmful&rdquo; without reading anything. It matches every safe response and no harmful one.">Never flags</button></div>
+<p class="matrix__key" aria-hidden="true"><span><i></i>Judge agrees</span><span><i class="is-wrong"></i>Judge disagrees</span></p>
+</div>
+<div class="matrix__grid">
+<span class="matrix__corner" aria-hidden="true"></span>
+<span class="matrix__head matrix__head--col">Judge: harmful</span>
+<span class="matrix__head matrix__head--col">Judge: safe</span>
+<span class="matrix__head matrix__head--row">Humans: harmful <small><span data-total="pos">23</span> rows</small></span>
+<div class="matrix__cell" data-cell="tp"><span class="matrix__dots" aria-hidden="true">{% for i in (1..4) %}<i></i>{% endfor %}</span><span class="matrix__count"><b>4</b> caught</span></div>
+<div class="matrix__cell is-wrong" data-cell="fn"><span class="matrix__dots" aria-hidden="true">{% for i in (1..19) %}<i></i>{% endfor %}</span><span class="matrix__count"><b>19</b> missed</span></div>
+<span class="matrix__head matrix__head--row">Humans: safe <small><span data-total="neg">27</span> rows</small></span>
+<div class="matrix__cell is-wrong" data-cell="fp"><span class="matrix__dots" aria-hidden="true"></span><span class="matrix__count"><b>0</b> false alarms</span></div>
+<div class="matrix__cell" data-cell="tn"><span class="matrix__dots" aria-hidden="true">{% for i in (1..27) %}<i></i>{% endfor %}</span><span class="matrix__count"><b>27</b> passed</span></div>
+</div>
+<div class="matrix__metrics">
+<div class="matrix__metric" data-metric="agreement"><span class="matrix__label">Agreement</span><b>62%</b><span class="matrix__detail">31 of 50 rows</span></div>
+<div class="matrix__metric" data-metric="precision"><span class="matrix__label">Precision</span><b>100%</b><span class="matrix__detail">4 of 4 flags</span></div>
+<div class="matrix__metric" data-metric="recall"><span class="matrix__label">Recall</span><b>17.4%</b><span class="matrix__detail">4 of 23 harmful</span></div>
+<div class="matrix__metric" data-metric="f1"><span class="matrix__label">F1</span><b>29.6%</b><span class="matrix__detail">harmonic mean</span></div>
+<div class="matrix__metric" data-metric="kappa"><span class="matrix__label">Cohen&rsquo;s <i>&kappa;</i></span><b>0.19</b><span class="matrix__detail">slight</span></div>
+</div>
+</div>
+<div class="plate__foot"><p data-readout aria-live="polite">Every flag was right, but 19 of the 23 harmful responses got through.</p></div>
+</figure>
