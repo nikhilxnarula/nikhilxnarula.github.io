@@ -694,6 +694,132 @@ strong, b { font-weight: 650; }
 .pager a:hover { border-color: var(--signal); color: var(--signal); }
 .pager .label { display: block; margin-bottom: 0.15rem; font-size: 0.6rem; color: var(--ink-3); }
 
+/* An equation on its own line: a paragraph followed by {: .eq} in Markdown. */
+.prose .eq { text-align: center; font-size: 1.12rem; font-weight: 500; letter-spacing: -0.01em; }
+.prose sub { font-size: 0.68em; line-height: 0; }
+
+/* Data figures ------------------------------------------------------------ */
+
+/* Marks that are right stay grey; marks that are wrong take the signal colour. */
+.matrix__body, .ci__body { padding: var(--s-2); }
+
+/* Fig. 1 in "Judging the Judge": a confusion matrix, one dot per response. */
+.matrix__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-1) var(--s-2);
+  margin-bottom: var(--s-2);
+}
+
+.matrix__switch { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+
+.matrix__switch button {
+  min-height: 32px;
+  padding: 0.15rem 0.65rem;
+  border: 1px solid var(--rule);
+  background: none;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+
+.matrix__switch button:hover { border-color: var(--signal); color: var(--signal); }
+.matrix__switch button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--surface); }
+
+.matrix__key { display: flex; flex-wrap: wrap; gap: 0.2rem var(--s-2); font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); }
+.matrix__key span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.matrix__key i, .matrix__dots i { display: block; aspect-ratio: 1; border-radius: 50%; background: var(--numeral); }
+.matrix__key i { width: 8px; }
+.matrix__key i.is-wrong, .matrix__cell.is-wrong .matrix__dots i { background: var(--signal); }
+
+.matrix__grid { display: grid; grid-template-columns: 7rem minmax(0, 1fr) minmax(0, 1fr); gap: 0.4rem; }
+
+.matrix__head { font-family: var(--mono); font-size: 0.62rem; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.matrix__head--col { align-self: end; padding-inline: 0.75rem; }
+.matrix__head--row { align-self: center; }
+.matrix__head small { display: block; font-size: inherit; letter-spacing: 0.02em; text-transform: none; }
+
+.matrix__cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.75rem;
+  border: 1px solid var(--rule-soft);
+  background: var(--paper);
+  transition: opacity 0.25s;
+}
+
+/* Ten dots to a row, so counts read in tens; three rows always fit 27. */
+.matrix__dots { display: grid; grid-template-columns: repeat(10, minmax(4px, 8px)); gap: 4px; align-content: start; min-height: 32px; }
+.matrix__count { font-size: 0.8rem; line-height: 1.3; color: var(--ink-2); }
+.matrix__count b { font-size: 1.05rem; color: var(--ink); }
+
+/* While a metric is chosen, the cells it ignores step back. */
+.matrix.is-reading .matrix__cell:not(.is-read) { opacity: 0.28; }
+
+.matrix__metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: var(--s-2); border-top: 1px solid var(--rule); }
+.matrix__metric { padding: 0.6rem 0.75rem 0.15rem; transition: box-shadow 0.2s, background-color 0.2s; }
+.matrix__metric + .matrix__metric { border-left: 1px solid var(--rule-soft); }
+.matrix__metric[tabindex] { cursor: pointer; }
+.matrix__metric[tabindex]:hover, .matrix__metric.is-on { box-shadow: inset 0 2px 0 var(--signal); }
+.matrix__metric[aria-pressed="true"] { background: var(--paper-2); }
+.matrix__label { display: block; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; color: var(--ink-3); }
+.matrix__label i { font-style: normal; text-transform: none; }
+.matrix__metric b { display: block; margin-top: 0.15rem; font-size: 1.45rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; white-space: nowrap; }
+.matrix__detail { display: block; font-size: 0.72rem; line-height: 1.35; color: var(--ink-3); }
+
+/* Room for the longest note, so the page doesn't jump as notes change. */
+.matrix .plate__foot p { min-height: 2.8em; }
+
+/* Fig. 2: intervals on one 0-100% axis. */
+.ci__key { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; margin-bottom: 1.4rem; font-size: 0.78rem; color: var(--ink-2); }
+.ci__key span { display: inline-flex; align-items: center; gap: 0.55rem; }
+
+/* The key mirrors the mark: a short line through a dot. */
+.ci__key i { position: relative; display: block; width: 22px; height: 2px; background: var(--numeral); }
+.ci__key i::after { content: ""; position: absolute; top: -4px; left: 6px; width: 10px; height: 10px; border-radius: 50%; background: inherit; }
+.ci__key .is-shot i { background: var(--signal); }
+
+.ci__group, .ci__axis { display: grid; grid-template-columns: 4.75rem minmax(0, 1fr); column-gap: 0.75rem; }
+.ci__group { align-items: center; }
+.ci__group + .ci__group { margin-top: var(--s-2); }
+.ci__metric { grid-column: 1 / -1; margin-bottom: 1.1rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.ci__name { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-2); }
+
+/* Hairline gridlines at 0, 25, 50 and 75%, and a border at 100%. */
+.ci__track {
+  position: relative;
+  height: 2rem;
+  border-right: 1px solid var(--rule-soft);
+  background: linear-gradient(90deg, var(--rule-soft) 1px, transparent 1px) 0 0 / 25% 100%;
+  color: var(--numeral);
+}
+
+.ci__track.is-shot { color: var(--signal); }
+
+.ci__bar { position: absolute; top: 50%; left: var(--lo); width: calc(var(--hi) - var(--lo)); height: 2px; margin-top: -1px; background: currentColor; }
+.ci__bar::before, .ci__bar::after { content: ""; position: absolute; top: -4px; width: 2px; height: 10px; background: currentColor; }
+.ci__bar::before { left: 0; }
+.ci__bar::after { right: 0; }
+.ci__dot { position: absolute; top: 50%; left: var(--x); width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 2px var(--surface); }
+.ci__value { position: absolute; top: 50%; left: var(--x); transform: translate(9px, -50%); font-size: 0.74rem; font-weight: 600; line-height: 1; white-space: nowrap; color: var(--ink); }
+
+/* What never flagging anything scores: a hairline through both lanes. */
+.ci__ref { position: absolute; top: 0; bottom: 0; left: var(--x); width: 1px; background: var(--ink-3); }
+.ci__ref span { position: absolute; bottom: 100%; left: 0; transform: translateX(-50%); padding-bottom: 0.2rem; font-family: var(--mono); font-size: 0.6rem; font-style: normal; white-space: nowrap; color: var(--ink-2); }
+
+.ci__axis { margin-top: 0.35rem; }
+.ci__ticks { position: relative; height: 1rem; font-family: var(--mono); font-size: 0.6rem; color: var(--ink-3); }
+.ci__ticks span { position: absolute; top: 0; left: var(--x); transform: translateX(-50%); }
+.ci__ticks span:first-child { transform: none; }
+.ci__ticks span:last-child { transform: translateX(-100%); }
+
 /* Reading progress, driven by scroll alone where the browser supports it. */
 .progress { display: none; }
 
@@ -751,6 +877,21 @@ strong, b { font-weight: 650; }
   .timeline, .timeline tbody, .timeline tr, .timeline th, .timeline td { display: block; width: auto; }
   .timeline tr { padding-block: 0.65rem; }
   .timeline th, .timeline td { padding: 0; white-space: normal; }
+  .matrix__body, .ci__body { padding-inline: 0.75rem; }
+  /* Row labels move above their two cells, so the cells keep the width. */
+  .matrix__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .matrix__corner { display: none; }
+  .matrix__head--row { grid-column: 1 / -1; margin-top: 0.4rem; }
+  .matrix__head--row small { display: inline; margin-left: 0.5em; }
+  .matrix__metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .matrix__metric { padding-inline: 0.5rem; }
+  .matrix__metric:nth-child(3n + 1) { border-left: 0; }
+  .matrix__metric:nth-child(n + 4) { border-top: 1px solid var(--rule-soft); }
+  /* Fixed line counts, so switching judges never changes the figure's height. */
+  .matrix .plate__bar > :last-child { flex-basis: 100%; }
+  .matrix__metric b { font-size: 1.25rem; }
+  .matrix__detail { min-height: 2.7em; }
+  .matrix .plate__foot p { min-height: 5.6em; }
 }
 
 @media (prefers-reduced-motion: reduce) {

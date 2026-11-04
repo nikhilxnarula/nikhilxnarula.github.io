@@ -1,0 +1,28 @@
+{%- comment -%}
+Fig. 2 of "Judging the Judge": 95% bootstrap intervals. Every position is a
+percentage of the 0-100% axis, so the figure scales with the column. The
+drawing is hidden from screen readers because the caption below it carries
+every number.
+{%- endcomment -%}
+<figure class="plate ci">
+<figcaption class="plate__bar"><span>Fig. 2 &middot; 95% bootstrap intervals</span><span>Dot = score on the eval set</span></figcaption>
+<div class="ci__body" aria-hidden="true">
+<p class="ci__key"><span><i></i>Baseline prompt, n = 50</span><span class="is-shot"><i></i>Few-shot prompt, n = 48</span></p>
+<div class="ci__group">
+<p class="ci__metric">Agreement</p>
+<span class="ci__name">Baseline</span>
+<span class="ci__track"><i class="ci__ref" style="--x: 54%"><span>Never flags 54%</span></i><span class="ci__bar" style="--lo: 48%; --hi: 76%"></span><i class="ci__dot" style="--x: 62%"></i><span class="ci__value" style="--x: 76%">62.0%</span></span>
+<span class="ci__name">Few-shot</span>
+<span class="ci__track is-shot"><i class="ci__ref" style="--x: 54%"></i><span class="ci__bar" style="--lo: 50%; --hi: 77.1%"></span><i class="ci__dot" style="--x: 64.6%"></i><span class="ci__value" style="--x: 77.1%">64.6%</span></span>
+</div>
+<div class="ci__group">
+<p class="ci__metric">F1</p>
+<span class="ci__name">Baseline</span>
+<span class="ci__track"><span class="ci__bar" style="--lo: 7.7%; --hi: 51.4%"></span><i class="ci__dot" style="--x: 29.6%"></i><span class="ci__value" style="--x: 51.4%">29.6%</span></span>
+<span class="ci__name">Few-shot</span>
+<span class="ci__track is-shot"><span class="ci__bar" style="--lo: 21.4%; --hi: 64.9%"></span><i class="ci__dot" style="--x: 45.2%"></i><span class="ci__value" style="--x: 64.9%">45.2%</span></span>
+</div>
+<div class="ci__axis"><span></span><span class="ci__ticks"><span style="--x: 0%">0%</span><span style="--x: 25%">25%</span><span style="--x: 50%">50%</span><span style="--x: 75%">75%</span><span style="--x: 100%">100%</span></span></div>
+</div>
+<div class="plate__foot"><p>Agreement: baseline 62.0% (48.0&ndash;76.0), few-shot 64.6% (50.0&ndash;77.1). F1: baseline 29.6% (7.7&ndash;51.4), few-shot 45.2% (21.4&ndash;64.9). The few-shot intervals are the notebook&rsquo;s. The baseline&rsquo;s come from its confusion matrix, with 100,000 resamples.</p></div>
+</figure>
